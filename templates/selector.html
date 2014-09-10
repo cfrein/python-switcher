@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block body %}
+<script src="static/js/local.js"></script>
+<!--<script type=text/javascript>
+$(
+    // When the LED button is pressed (change)
+    // do an ajax request to server to change LED state
+    function() 
+    {
+        $('#flip-1').change(function() 
+        {
+            $.getJSON($SCRIPT_ROOT + '/_led', {state: $('#flip-1').val()});
+        });     
+    }
+    );
+
+    // Send value if selector is tapped
+$(
+    function() 
+    {
+        $('#selector1').change(function() 
+        {
+            $.getJSON($SCRIPT_ROOT + '/_led', {state: $('#selector1').val()});
+        });     
+    }
+    );
+
+$(
+    // Button has been clicked
+    function clickedOp() {
+        $.ajax({url:$SCRIPT_ROOT + '/_button'});
+    }
+    );
+</script>-->
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>{{ title }}</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+
+        <div class="ui-field-contain">
+            <label for="selector1">Select Option:</label>
+            <select name="selector1" id="selector1" data-native-menu="false">
+                <option value="choose-one" data-placeholder="true">Choose one...</option>
+                {% for scenario in scenarios %}
+                <option value="{{scenario[0]}}">{{scenarios[scenario]}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <form>
+            <p>The button is <span id="buttonState"></span></p>
+            <br>
+            <select name="flip-1" id="flip-1" data-role="slider" style="float: left;">
+                <option value="off">LED off</option>
+                <option value="on">LED on</option>
+            </select>
+        </form>
+
+        <button onclick="clickedOp();"> Power </button>
+
+    </div><!-- /content -->
+
+</div><!-- /page -->
+{% endblock %}
+
