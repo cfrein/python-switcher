@@ -1,6 +1,4 @@
-#Virtualenv
-.Python
-lib
-bin
-include
+venv
 *.swp
+*~
+*.pyc
